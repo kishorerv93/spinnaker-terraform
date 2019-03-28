@@ -5,9 +5,10 @@ resource "aws_route53_zone" "internal" {
 		name = "${var.username}-${var.prefix}-${var.internal_dns_zone}"
 		purpose = "Spinnaker"
 	}
-
+       vpc {
 	vpc_id = "${aws_vpc.main.id}"
 	vpc_region = "${var.region}"
+   }
 }
 
 resource "aws_route53_record" "jenkins" {
